@@ -1,5 +1,7 @@
 package bk.partinin.springredditclone.controller;
 
+import bk.partinin.springredditclone.dto.AuthenticationResponse;
+import bk.partinin.springredditclone.dto.LoginRequest;
 import bk.partinin.springredditclone.dto.RegisterRequest;
 import bk.partinin.springredditclone.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -24,5 +26,10 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully", HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }
