@@ -21,5 +21,5 @@ public interface SubredditMapper {
 
     @InheritInverseConfiguration
     @Mapping(target = "posts", ignore = true)
-    Subreddit mapDtoToSubreddit(SubredditDto subredditDto);
+    Subreddit mapDtoToSubreddit(SubredditDto subreddit);
 }
