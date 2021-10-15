@@ -1,6 +1,7 @@
 package bk.partinin.springredditclone.service;
 
 import bk.partinin.springredditclone.dto.SubredditDto;
+import bk.partinin.springredditclone.exceptions.SpringRedditException;
 import bk.partinin.springredditclone.mapper.SubredditMapper;
 import bk.partinin.springredditclone.model.Subreddit;
 import bk.partinin.springredditclone.repository.SubredditRepository;
@@ -37,4 +38,10 @@ public class SubredditService {
                 .collect(Collectors.toList());
     }
 
+    public SubredditDto getSubreddit(Long id) {
+        Subreddit subreddit = subredditRepository.findById(id)
+                .orElseThrow(() -> new SpringRedditException("No subreddit found with this id"));
+
+        return subredditMapper.mapSubredditToDto(subreddit);
+    }
 }
